@@ -1,0 +1,202 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+
+.reg-form{
+    margin:1rem 2rem;
+    border:1px black solid;
+    border-radius: 1rem;
+    height:100vh;
+    padding:1.5rem;
+    background-color: #edede9;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.person{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+h3{
+   margin-top: 1rem;
+    margin-bottom:1rem ;
+    text-decoration: underline;
+}
+
+ label{
+    margin-right:1rem;
+}
+input,select{
+    border-radius: .2rem;
+    color:grey;
+    border:1px solid #b1a7a6;
+    height:4.5vh;
+    background-color: #edede9;
+}
+
+
+.p-name{
+    width:20rem;
+}
+
+
+.age-input{
+    width: 15rem;
+}
+
+.contact{
+    display: flex;
+    margin-left: 2.65rem;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.mobile-input{
+    width:15rem;
+}
+
+
+.contact label{
+    margin-right:1rem;
+}
+
+.govt-id{
+    margin-left: 10.5rem;
+}
+
+.govtID-input{
+    margin-left: 2.7rem;
+    width: 12rem;
+}
+
+.govtIDnum-input{
+    margin-left: 1rem;
+    width: 20.8rem;
+}
+
+.contact-details{
+    display: flex;
+    margin-left: 2.65rem;
+    align-items: center;
+    
+}
+
+#guardianRelation{
+    margin-right: 1rem;
+}
+
+.email{
+    margin-left:5.8rem;
+}
+
+#email{
+    width: 15rem;
+}
+
+.emergency{
+    margin-left:4.5rem;
+    display: flex;
+    
+}
+
+.em-label{
+   flex:1.3;
+}
+#emergencyContact{
+    flex:2;
+    
+}
+
+.address-details{
+    display: flex;
+    margin-left: 2.65rem;
+    align-items: center;
+    flex-wrap: wrap;
+   
+}
+
+#address{
+    width: 19.5rem;
+}
+
+.state{
+    margin-left: 5.7rem;
+}    
+
+#state{
+    width: 18rem;
+}
+
+.city{
+    margin-left: 2rem;
+}
+
+#city{
+    width: 15rem;
+}
+
+.country,.pincode{
+    margin-top: 1.5rem;
+}
+
+#country{
+    width: 12rem;
+}
+
+.pincode{
+    margin-left:13.2rem
+}
+
+
+.other-details{
+    display: flex;
+    margin-left: 2.65rem;
+    align-items: center;
+    flex-wrap: wrap;
+   
+
+}
+
+.religion,.marital-status,.blood-group{
+    margin-left:4rem;
+}
+
+#religion,#maritalStatus{
+    width: 10rem;
+}
+
+.nationality{
+    margin-top:.8rem;
+}
+
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    gap:4rem;
+   
+}
+
+.buttons button{
+    height:8vh;
+    width: 8rem;
+    border-radius: .5rem;
+   
+}
+
+.cancel{
+    color:red;
+border:1px red solid;
+background-color: white;
+}
+
+.submit{
+    color:white;
+    background-color:green;
+    border:1px solid green;
+}
