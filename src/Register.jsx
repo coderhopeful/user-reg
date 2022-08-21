@@ -1,9 +1,13 @@
 import React from 'react'
 import { useFormik } from 'formik'
+import { useState, useEffect } from 'react'
 import * as Yup from "yup"
 import "./register.css"
+import Table from "./Table"
 
 const Register = () => {
+    const [users, setUsers] = useState([]);
+
     const formik = useFormik({
         initialValues: {
             personName: "",
@@ -27,18 +31,31 @@ const Register = () => {
             bloodGroup: "",
             nationality: "Indian"
         },
+        onSubmit: (values) => {
+            setUsers(current => [...current, { values }]);
+            console.log(users)
+
+        },
+        validationSchema: Yup.object({
+            personName: Yup.string().required("Required field"),
+            age: Yup.string().required("Required field"),
+            sex: Yup.string().required("Required field"),
+            email: Yup.string().email("Invalid email address")
+        })
 
     })
 
-    console.log(formik.values);
+
+
+
     return (
         <div>
-            <form className='reg-form'>
+            <form className='reg-form' onSubmit={formik.handleSubmit}>
                 <div className="personal-details">
                     <h3>Personal Details</h3>
                     <div className='person'>
                         <div className="name">
-                            <label>Name</label>
+                            <label className='required'>Name</label>
                             <input
                                 type="text"
                                 id="personName"
@@ -46,10 +63,12 @@ const Register = () => {
                                 value={formik.values.personName}
                                 onChange={formik.handleChange}
                                 className="p-name"
+                                onBlur={formik.handleBlur}
                             />
+                            {formik.touched.personName && formik.errors.personName ? <p>{formik.errors.personName}</p> : null}
                         </div>
                         <div className="age">
-                            <label>Date of Birth or Age</label>
+                            <label className='required'>Date of Birth or Age</label>
                             <input
                                 type="text"
                                 id="age"
@@ -57,15 +76,18 @@ const Register = () => {
                                 value={formik.values.age}
                                 onChange={formik.handleChange}
                                 className="age-input"
+                                onBlur={formik.handleBlur}
 
                             />
+                            {formik.touched.age && formik.errors.age ? <p>{formik.errors.age}</p> : null}
                         </div>
                         <div className="sex">
-                            <label>Sex</label>
+                            <label className='required'>Sex</label>
                             <select
                                 value={formik.values.sex}
                                 id="sex"
                                 onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                             >
                                 <option value="" selected>Enter Sex</option>
                                 <option value="Male">Male</option>
@@ -73,6 +95,7 @@ const Register = () => {
                                 <option value="Other">Other</option>
                                 <option value="Does not wish to specify">Does not wish to specify</option>
                             </select>
+                            {formik.touched.sex && formik.errors.sex ? <p>{formik.errors.sex}</p> : null}
                         </div>
 
                     </div>
@@ -159,9 +182,11 @@ const Register = () => {
                             placeholder='Enter Email'
                             value={formik.values.email}
                             onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
 
 
                         />
+                        {formik.touched.email && formik.errors.email ? <p>{formik.errors.email}</p> : null}
                     </div>
                     <div className="emergency">
                         <label className="em-label">Emergency Contact Number</label>
@@ -261,7 +286,7 @@ const Register = () => {
                 <h3>Other Details</h3>
                 <div className="other-details">
                     <div className="occupation">
-                    <label >Occupation</label>
+                        <label >Occupation</label>
                         <input
                             type="text"
                             id="occupation"
@@ -273,7 +298,7 @@ const Register = () => {
                         />
                     </div>
                     <div className="religion">
-                    <label >Religion</label>
+                        <label >Religion</label>
                         <select
                             name="religion"
                             id="religion"
@@ -292,7 +317,7 @@ const Register = () => {
                         </select>
                     </div>
                     <div className="marital-status">
-                    <label >Marital Status</label>
+                        <label >Marital Status</label>
                         <select
                             name="marital-status"
                             id="maritalStatus"
@@ -304,16 +329,16 @@ const Register = () => {
                             <option selected>Enter Marital Status</option>
                             <option value="Single">Single</option>
                             <option value="Married">Married</option>
-                            
+
 
 
 
                         </select>
                     </div>
                     <div className="blood-group">
-                    <label >Blood Group</label>
+                        <label >Blood Group</label>
                         <select
-                            name="blood-group"
+                            name="bloodGroup"
                             id="bloodGroup"
                             onChange={formik.handleChange}
                             value={formik.values.bloodGroup}
@@ -325,14 +350,14 @@ const Register = () => {
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="AB">AB</option>
-                            
+
 
 
 
                         </select>
                     </div>
                     <div className="nationality">
-                    <label >Nationality</label>
+                        <label >Nationality</label>
                         <input
                             type="text"
                             id="nationality"
@@ -346,12 +371,18 @@ const Register = () => {
                 </div>
 
                 <div className="buttons">
-                    <button className='cancel'>Cancel<br/>(ESC)</button>
-                    <button className='submit'>Submit<br/>(Ctrl+S)</button>
+                    <button className='cancel'>Cancel<br />(ESC)</button>
+                    <button type="submit" className='submit'>Submit<br />(Ctrl+S)</button>
                 </div>
-                
+
 
             </form>
+            {/* {
+                useEffect(() => {
+                    <Table users={users} />
+                }, [users])
+            } */}
+            <Table users={users} />
         </div>
     )
 }
